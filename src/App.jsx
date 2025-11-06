@@ -1,9 +1,10 @@
-import { Heart } from "lucide-react";
 import AppHeader from "./components/common/AppHeader";
 import { Separator } from "./components/ui/separator";
 import { Skeleton } from "./components/ui/skeleton";
 
 function App() {
+    const gallery = ["", "", "", "", "", "", ""];
+
     return (
         <div className="w-full h-screen">
             {/* 배너 */}
@@ -23,13 +24,16 @@ function App() {
             <main className="py-6">
                 {/* 메인 홍보 갤러리 */}
                 <section className="flex items-center gap-6 overflow-x-scroll">
+                    {gallery.map(() => (
+                        <Skeleton className="min-w-[520px] w-[520px] h-80" />
+                    ))}
+                    {/* <Skeleton className="min-w-[520px] w-[520px] h-80" />
                     <Skeleton className="min-w-[520px] w-[520px] h-80" />
                     <Skeleton className="min-w-[520px] w-[520px] h-80" />
                     <Skeleton className="min-w-[520px] w-[520px] h-80" />
                     <Skeleton className="min-w-[520px] w-[520px] h-80" />
                     <Skeleton className="min-w-[520px] w-[520px] h-80" />
-                    <Skeleton className="min-w-[520px] w-[520px] h-80" />
-                    <Skeleton className="min-w-[520px] w-[520px] h-80" />
+                    <Skeleton className="min-w-[520px] w-[520px] h-80" /> */}
                 </section>
             </main>
         </div>
