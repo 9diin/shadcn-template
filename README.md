@@ -13,3 +13,13 @@
    }
    }
 8. shadcn ui 설치: npx shadcn@latest init
+9. 새로운 VS Code 화면에서 새 터미널에서 git clone https://github.com/9diin/shadcn-template.git 명령어 입력
+10. 템플릿 생성 후에 터미널을 열고 npm install 명령어를 입력해주세요.
+11. shadcn ui 컴포넌트 설치
+
+-   npx shadcn@latest add avatar
+-   npx shadcn@latest add button
+-   npx shadcn@latest add input
+-   npx shadcn@latest add skeleton
+
+12. lucide icon 설치: npm install lucide-react
