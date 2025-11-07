@@ -220,12 +220,12 @@ function App() {
                                         <Separator />
                                         <div className="flex flex-col gap-1">
                                             <div className="flex items-center gap-1">
-                                                <BadgeCheck fill="#dc2626" className="text-white" />
+                                                <BadgeCheck size={18} fill="#dc2626" className="text-white" />
                                                 <p className="text-sm">{mentor.career}</p>
                                             </div>
                                             <div className="flex items-center gap-1">
-                                                {mentor.job === "마케터" && <BriefcaseBusiness fill="#2563eb" className="text-white" />}
-                                                {mentor.job === "디자이너" && <BriefcaseBusiness fill="#16a34a" className="text-white" />}
+                                                {mentor.job === "마케터" && <BriefcaseBusiness size={18} fill="#2563eb" className="text-white" />}
+                                                {mentor.job === "디자이너" && <BriefcaseBusiness size={18} fill="#16a34a" className="text-white" />}
                                                 <p className="text-sm line-clamp-1">{mentor.role}</p>
                                             </div>
                                         </div>
