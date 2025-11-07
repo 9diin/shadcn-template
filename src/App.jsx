@@ -95,9 +95,9 @@ function App() {
             </div>
             {/* 헤더 */}
             <AppHeader />
-            <main className="flex flex-col items-center py-6">
+            <main className="w-full flex flex-col items-center py-6">
                 {/* 메인 홍보 갤러리 */}
-                <section className="flex items-center gap-6 overflow-x-scroll">
+                <section className="w-full flex items-center gap-6 overflow-x-scroll">
                     {gallery.map(() => (
                         <Skeleton className="min-w-[520px] w-[520px] h-80" />
                     ))}
