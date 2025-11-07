@@ -1,168 +1,13 @@
-import { ArrowUpDown, BadgeCheck, BriefcaseBusiness, Brush, Camera, CirclePlay, Compass, Crosshair, Gem, IdCard, Layers, MousePointerClick, Package, Palette, Panda, PenTool, Sparkles, Type, WandSparkles } from "lucide-react";
-import AppHeader from "./components/common/AppHeader";
-import { Separator } from "./components/ui/separator";
-import { Skeleton } from "./components/ui/skeleton";
-import SkeletonImageCard from "./components/skeleton/ImageCard";
-import { Card } from "./components/ui/card";
-import { Badge } from "./components/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
+import { AppHeader, AppStickyMenu } from "./components/common";
+import { SkeletonImageCard } from "./components/skeleton";
+import { Avatar, AvatarFallback, AvatarImage, Badge, Card, Separator, Skeleton } from "./components/ui";
+import { BadgeCheck, BriefcaseBusiness, Crosshair, WandSparkles } from "lucide-react";
+
+// CONSTANTS TEST DATA
+import { MENTORS, RECRUITMENTS } from "./constants";
 
 function App() {
     const gallery = ["", "", "", "", "", "", ""];
-    const categories = [
-        {
-            icon: Layers,
-            label: "전체",
-            isActive: true, // 라벨 색상 통제를 위한 속성
-        },
-        {
-            icon: CirclePlay,
-            label: "영상/모션그래픽",
-            isActive: false,
-        },
-        {
-            icon: Palette,
-            label: "그래픽 디자인",
-            isActive: false,
-        },
-        {
-            icon: IdCard,
-            label: "브랜딩/편집",
-            isActive: false,
-        },
-        {
-            icon: MousePointerClick,
-            label: "UI/UX",
-            isActive: false,
-        },
-        {
-            icon: PenTool,
-            label: "일러스트레이션",
-            isActive: false,
-        },
-        {
-            icon: Camera,
-            label: "디지털 아트",
-            isActive: false,
-        },
-        {
-            icon: Sparkles,
-            label: "AI",
-            isActive: false,
-        },
-        {
-            icon: Panda,
-            label: "캐릭터 디자인",
-            isActive: false,
-        },
-        {
-            icon: Package,
-            label: "제품/패키지 디자인",
-            isActive: false,
-        },
-        {
-            icon: Camera,
-            label: "포토그래피",
-            isActive: false,
-        },
-        {
-            icon: Type,
-            label: "타이포그래피",
-            isActive: false,
-        },
-        {
-            icon: Gem,
-            label: "공예",
-            isActive: false,
-        },
-        {
-            icon: Brush,
-            label: "파인아트",
-            isActive: false,
-        },
-    ];
-    const mentors = [
-        {
-            imgUrl: "",
-            name: "개발자 9Diin",
-            career: "시니어(7년차)",
-            job: "디자이너",
-            role: "현 마이리얼트립 프로덕트 디자이너",
-        },
-        {
-            imgUrl: "",
-            name: "개발자 9Diin",
-            career: "시니어(7년차)",
-            job: "디자이너",
-            role: "현 마이리얼트립 프로덕트 디자이너",
-        },
-        {
-            imgUrl: "",
-            name: "개발자 9Diin",
-            career: "시니어(7년차)",
-            job: "마케터",
-            role: "현 마이리얼트립 프로덕트 디자이너",
-        },
-        {
-            imgUrl: "",
-            name: "개발자 9Diin",
-            career: "시니어(7년차)",
-            job: "마케터",
-            role: "현 마이리얼트립 프로덕트 디자이너",
-        },
-        {
-            imgUrl: "",
-            name: "개발자 9Diin",
-            career: "시니어(7년차)",
-            job: "디자이너",
-            role: "현 마이리얼트립 프로덕트 디자이너",
-        },
-        {
-            imgUrl: "",
-            name: "개발자 9Diin",
-            career: "시니어(7년차)",
-            job: "마케터",
-            role: "현 마이리얼트립 프로덕트 디자이너",
-        },
-    ];
-    const recruitments = [
-        {
-            imgUrl: "",
-            logo: "",
-            title: "그래픽 디자이너 (3D) 채용",
-            company: "토스플레이스",
-        },
-        {
-            imgUrl: "",
-            logo: "",
-            title: "광고 대행사 디자이너 채용 (3년 이상)",
-            company: "브레이커스",
-        },
-        {
-            imgUrl: "",
-            logo: "",
-            title: "[미리캔버스] 그래픽 디자이너(템플릿 디자이너)",
-            company: "미리디",
-        },
-        {
-            imgUrl: "",
-            logo: "",
-            title: "그래픽 디자이너 (3D) 채용",
-            company: "토스플레이스",
-        },
-        {
-            imgUrl: "",
-            logo: "",
-            title: "광고 대행사 디자이너 채용 (3년 이상)",
-            company: "브레이커스",
-        },
-        {
-            imgUrl: "",
-            logo: "",
-            title: "[미리캔버스] 그래픽 디자이너(템플릿 디자이너)",
-            company: "미리디",
-        },
-    ];
 
     return (
         <div className="w-full h-screen">
@@ -188,27 +33,7 @@ function App() {
                     ))}
                 </section>
                 {/* STIKCY MENU */}
-                <section className="sticky top-14 z-10 w-full flex items-center justify-center py-2 gap-10 mt-20 bg-white">
-                    <div className="flex flex-col gap-2">
-                        {/* 아이콘 */}
-                        <ArrowUpDown className="text-neutral-700" />
-                        {/* 아이콘 라벨 */}
-                        <p className="text-sm">정렬</p>
-                    </div>
-                    <Separator orientation="vertical" className="h-10!" />
-                    <div className="flex items-center gap-12">
-                        {categories.map((category) => {
-                            const IconComponent = category.icon;
-
-                            return (
-                                <div className="flex flex-col items-center gap-2">
-                                    <IconComponent className="text-neutral-700" />
-                                    <p className="text-sm">{category.label}</p>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </section>
+                <AppStickyMenu />
                 {/* IMAGE LIST */}
                 <section className="w-full grid grid-cols-6 gap-6 mt-4 px-20">
                     <SkeletonImageCard />
@@ -235,7 +60,7 @@ function App() {
                     <h3 className="scroll-m-20 text-2xl text-white font-semibold tracking-tight">포트폴리오 피드백부터 커리어 상담까지!</h3>
                     <div className="grid grid-cols-6 gap-6">
                         {/* 멘토 카드 */}
-                        {mentors.map((mentor) => {
+                        {MENTORS.map((mentor) => {
                             return (
                                 <Card className="w-full p-0 gap-0">
                                     <div className="relative w-full">
@@ -278,7 +103,7 @@ function App() {
                 <section className="w-full flex flex-col gap-6 py-12 px-20 bg-neutral-100">
                     <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">디자이너 채용 정보는 노트폴리오에서!</h3>
                     <div className="grid grid-cols-6 gap-6">
-                        {recruitments.map((recruitment) => {
+                        {RECRUITMENTS.map((recruitment) => {
                             return (
                                 <Card className="w-full h-fit p-0 gap-3 border-none shadow-none bg-transparent">
                                     <Skeleton className="w-full h-52 rounded-lg bg-neutral-200" />

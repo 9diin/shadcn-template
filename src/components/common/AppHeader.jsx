@@ -1,6 +1,5 @@
 import { ChevronDown, Search } from "lucide-react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button, Input } from "../ui";
 
 const menu = [
     {
@@ -67,4 +66,4 @@ function AppHeader() {
     );
 }
 
-export default AppHeader;
+export { AppHeader };

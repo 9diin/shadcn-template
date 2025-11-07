@@ -1,5 +1,5 @@
-import { ChartNoAxesColumnIncreasing, Eye, Heart } from "lucide-react";
-import { Skeleton } from "../ui/skeleton";
+import { Skeleton } from "../ui";
+import { ChartNoAxesColumnIncreasing, Heart } from "lucide-react";
 
 function SkeletonImageCard() {
     return (
@@ -27,4 +27,4 @@ function SkeletonImageCard() {
     );
 }
 
-export default SkeletonImageCard;
+export { SkeletonImageCard };
