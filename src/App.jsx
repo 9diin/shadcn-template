@@ -200,7 +200,7 @@ function App() {
                             return (
                                 <Card className="w-full p-0 gap-0">
                                     <div className="relative w-full">
-                                        <Skeleton className="w-full h-52 bg-neutral-200 rounded-b-none" />
+                                        <Skeleton className="w-full h-52 rounded-t-lg rounded-b-none" />
                                         {mentor.job === "마케터" && (
                                             <Badge className="absolute bottom-4 right-4 py-1 rounded-sm bg-blue-600">
                                                 <Crosshair />
