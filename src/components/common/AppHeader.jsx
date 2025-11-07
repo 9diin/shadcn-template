@@ -37,7 +37,7 @@ const menu = [
 
 function AppHeader() {
     return (
-        <header className="w-full h-14 flex items-center justify-between px-8 border-b">
+        <header className="sticky top-0 z-10 w-full h-14 flex items-center justify-between px-8 border-b bg-white">
             <div className="h-full flex items-center gap-10">
                 {/* 로고 */}
                 <img src="src/assets/logo.svg" alt="@LOGO" className="w-30" />

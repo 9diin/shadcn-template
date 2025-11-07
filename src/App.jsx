@@ -5,6 +5,7 @@ import { Skeleton } from "./components/ui/skeleton";
 import SkeletonImageCard from "./components/skeleton/ImageCard";
 import { Card } from "./components/ui/card";
 import { Badge } from "./components/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
 
 function App() {
     const gallery = ["", "", "", "", "", "", ""];
@@ -124,6 +125,44 @@ function App() {
             role: "현 마이리얼트립 프로덕트 디자이너",
         },
     ];
+    const recruitments = [
+        {
+            imgUrl: "",
+            logo: "",
+            title: "그래픽 디자이너 (3D) 채용",
+            company: "토스플레이스",
+        },
+        {
+            imgUrl: "",
+            logo: "",
+            title: "광고 대행사 디자이너 채용 (3년 이상)",
+            company: "브레이커스",
+        },
+        {
+            imgUrl: "",
+            logo: "",
+            title: "[미리캔버스] 그래픽 디자이너(템플릿 디자이너)",
+            company: "미리디",
+        },
+        {
+            imgUrl: "",
+            logo: "",
+            title: "그래픽 디자이너 (3D) 채용",
+            company: "토스플레이스",
+        },
+        {
+            imgUrl: "",
+            logo: "",
+            title: "광고 대행사 디자이너 채용 (3년 이상)",
+            company: "브레이커스",
+        },
+        {
+            imgUrl: "",
+            logo: "",
+            title: "[미리캔버스] 그래픽 디자이너(템플릿 디자이너)",
+            company: "미리디",
+        },
+    ];
 
     return (
         <div className="w-full h-screen">
@@ -149,7 +188,7 @@ function App() {
                     ))}
                 </section>
                 {/* STIKCY MENU */}
-                <section className="flex gap-10 mt-20">
+                <section className="sticky top-14 z-10 w-full flex items-center justify-center py-2 gap-10 mt-20 bg-white">
                     <div className="flex flex-col gap-2">
                         {/* 아이콘 */}
                         <ArrowUpDown className="text-neutral-700" />
@@ -171,7 +210,7 @@ function App() {
                     </div>
                 </section>
                 {/* IMAGE LIST */}
-                <section className="w-full grid grid-cols-6 gap-6 mt-6 px-20">
+                <section className="w-full grid grid-cols-6 gap-6 mt-4 px-20">
                     <SkeletonImageCard />
                     <SkeletonImageCard />
                     <SkeletonImageCard />
@@ -217,7 +256,7 @@ function App() {
                                     {/* 멘토 정보 */}
                                     <div className="flex flex-col gap-2 p-4">
                                         <p className="text-lg font-semibold">{mentor.name} 멘토</p>
-                                        <Separator />
+                                        <Separator className="mb-1" />
                                         <div className="flex flex-col gap-1">
                                             <div className="flex items-center gap-1">
                                                 <BadgeCheck size={18} fill="#dc2626" className="text-white" />
@@ -234,6 +273,53 @@ function App() {
                             );
                         })}
                     </div>
+                </section>
+                {/* 디자이너 채용 정보는 노트폴리오에서! */}
+                <section className="w-full flex flex-col gap-6 py-12 px-20 bg-neutral-100">
+                    <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">디자이너 채용 정보는 노트폴리오에서!</h3>
+                    <div className="grid grid-cols-6 gap-6">
+                        {recruitments.map((recruitment) => {
+                            return (
+                                <Card className="w-full h-fit p-0 gap-3 border-none shadow-none bg-transparent">
+                                    <Skeleton className="w-full h-52 rounded-lg bg-neutral-200" />
+                                    <div className="flex gap-2">
+                                        {/* 로고 */}
+                                        <Avatar className="w-10 h-10">
+                                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                            <AvatarFallback>CN</AvatarFallback>
+                                        </Avatar>
+                                        <div className="flex flex-col">
+                                            {/* 타이틀 */}
+                                            <p className="text-[15px] font-semibold line-clamp-1">{recruitment.title}</p>
+                                            {/* 회사명 */}
+                                            <p className="text-sm text-neutral-700">{recruitment.company}</p>
+                                        </div>
+                                    </div>
+                                </Card>
+                            );
+                        })}
+                    </div>
+                </section>
+                {/* IMAGE LIST */}
+                <section className="w-full grid grid-cols-6 gap-6 mt-6 px-20">
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
+                    <SkeletonImageCard />
                 </section>
             </main>
         </div>
