@@ -1,4 +1,4 @@
-import { ArrowUpDown, BadgeCheck, BriefcaseBusiness, Brush, Camera, CirclePlay, Compass, Crosshair, Gem, IdCard, MousePointerClick, Package, Palette, Panda, PenTool, Sparkles, Type, WandSparkles } from "lucide-react";
+import { ArrowUpDown, BadgeCheck, BriefcaseBusiness, Brush, Camera, CirclePlay, Compass, Crosshair, Gem, IdCard, Layers, MousePointerClick, Package, Palette, Panda, PenTool, Sparkles, Type, WandSparkles } from "lucide-react";
 import AppHeader from "./components/common/AppHeader";
 import { Separator } from "./components/ui/separator";
 import { Skeleton } from "./components/ui/skeleton";
@@ -10,7 +10,7 @@ function App() {
     const gallery = ["", "", "", "", "", "", ""];
     const categories = [
         {
-            icon: Camera,
+            icon: Layers,
             label: "전체",
             isActive: true, // 라벨 색상 통제를 위한 속성
         },
