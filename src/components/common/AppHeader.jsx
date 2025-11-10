@@ -41,9 +41,9 @@ function AppHeader() {
                 {/* 로고 */}
                 <img src="src/assets/logo.svg" alt="@LOGO" className="w-30" />
                 <nav className="h-full flex items-center gap-4">
-                    {menu.map((item) => {
+                    {menu.map((item, index) => {
                         return (
-                            <div className={`h-full flex items-center gap-1 font-medium ${item.underline && "h-[calc(100%-2px)] border-b-2 border-black"}`}>
+                            <div key={index} className={`h-full flex items-center gap-1 font-medium ${item.underline && "h-[calc(100%-2px)] border-b-2 border-black"}`}>
                                 <p className={`text-[15px] ${item.underline && "mt-0.5"}`}>{item.label}</p>
                                 {item.dropdown && <ChevronDown size={16} />}
                                 {item.newest && <p className="text-xs text-[#05BCC6] font-medium">NEW</p>}

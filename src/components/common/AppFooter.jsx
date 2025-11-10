@@ -1,9 +1,7 @@
 import { Separator, Tooltip, TooltipContent, TooltipTrigger } from "../ui";
-import { BookText, MailOpen } from "lucide-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAppStore, faFacebook, faGooglePlay, faInstagram, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faEnvelopeOpen, faNewspaper } from "@fortawesome/free-regular-svg-icons";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelopeOpen, faNewspaper } from "@fortawesome/free-regular-svg-icons";
 
 function AppFooter() {
     return (

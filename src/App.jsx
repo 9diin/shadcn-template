@@ -1,13 +1,37 @@
 import { AppFooter, AppHeader, AppStickyMenu } from "./components/common";
 import { SkeletonImageCard } from "./components/skeleton";
-import { Avatar, AvatarFallback, AvatarImage, Badge, Button, Card, Separator, Skeleton } from "./components/ui";
+import { Avatar, AvatarFallback, AvatarImage, Badge, Button, Card, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Separator, Skeleton } from "./components/ui";
 import { BadgeCheck, BriefcaseBusiness, Crosshair, WandSparkles } from "lucide-react";
 
 // CONSTANTS TEST DATA
 import { MENTORS, RECRUITMENTS } from "./constants";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function App() {
     const gallery = ["", "", "", "", "", "", ""];
+
+    const [data, setData] = useState(null); // Unsplash API에서 받은 데이터 전부
+    const [images, setImages] = useState([]); // Unsplash API에서 받은 데이터 전부 중 실제로 필요한 Image 데이터
+
+    // Unsplash API 이미지 조회 함수
+    const fetchApi = async () => {
+        const API_KEY = "WiGPtaTl7v_Z_CMmuqp6qaLhBFOqfg8SIX_6DpWmi8k";
+        const API_URL = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}`;
+
+        const res = await axios.get(`${API_URL}&page=1&query=office`);
+        console.log("res: ", res);
+
+        // const 실제로필요한데이터전체 = res.data;
+        setData(res.data);
+        // const 스켈레톤이미지컴포넌트에서쓰일데이터 = res.data.results;
+        setImages(res.data.results);
+    };
+
+    useEffect(() => {
+        // 이미지 조회 함수 실행
+        fetchApi();
+    }, []);
 
     return (
         <div className="w-full">
@@ -28,14 +52,31 @@ function App() {
             <main className="w-full flex flex-col items-center py-6">
                 {/* 메인 홍보 갤러리 */}
                 <section className="w-full flex items-center gap-6 overflow-x-scroll">
-                    {gallery.map(() => (
-                        <Skeleton className="min-w-[520px] w-[520px] h-80" />
+                    {gallery.map((_, index) => (
+                        <Skeleton key={index} className="min-w-[520px] w-[520px] h-80" />
                     ))}
                 </section>
                 {/* STIKCY MENU */}
                 <AppStickyMenu />
                 {/* IMAGE LIST */}
                 <section className="w-full grid grid-cols-6 gap-6 mt-4 px-20">
+                    {images.map((image, index) => {
+                        return (
+                            <Dialog>
+                                <DialogTrigger>
+                                    <SkeletonImageCard />
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                        <DialogDescription>This action cannot be undone. This will permanently delete your account and remove your data from our servers.</DialogDescription>
+                                    </DialogHeader>
+                                </DialogContent>
+                            </Dialog>
+                        );
+                    })}
+
+                    {/* <SkeletonImageCard />
                     <SkeletonImageCard />
                     <SkeletonImageCard />
                     <SkeletonImageCard />
@@ -51,9 +92,7 @@ function App() {
                     <SkeletonImageCard />
                     <SkeletonImageCard />
                     <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
+                    <SkeletonImageCard /> */}
                 </section>
                 {/* 포트폴리오 피드백부터 커리어 상담까지! */}
                 <section className="w-full flex flex-col gap-6 py-12 px-20 mt-12 bg-black">

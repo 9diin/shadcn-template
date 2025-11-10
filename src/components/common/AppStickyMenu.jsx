@@ -85,11 +85,11 @@ function AppStickyMenu() {
             </div>
             <Separator orientation="vertical" className="h-10!" />
             <div className="flex items-center gap-12">
-                {categories.map((category) => {
+                {categories.map((category, index) => {
                     const IconComponent = category.icon;
 
                     return (
-                        <div className="flex flex-col items-center gap-2">
+                        <div key={index} className="flex flex-col items-center gap-2">
                             <IconComponent className="text-neutral-700" />
                             <p className="text-sm">{category.label}</p>
                         </div>
