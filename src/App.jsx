@@ -1,6 +1,6 @@
-import { AppHeader, AppStickyMenu } from "./components/common";
+import { AppFooter, AppHeader, AppStickyMenu } from "./components/common";
 import { SkeletonImageCard } from "./components/skeleton";
-import { Avatar, AvatarFallback, AvatarImage, Badge, Card, Separator, Skeleton } from "./components/ui";
+import { Avatar, AvatarFallback, AvatarImage, Badge, Button, Card, Separator, Skeleton } from "./components/ui";
 import { BadgeCheck, BriefcaseBusiness, Crosshair, WandSparkles } from "lucide-react";
 
 // CONSTANTS TEST DATA
@@ -10,7 +10,7 @@ function App() {
     const gallery = ["", "", "", "", "", "", ""];
 
     return (
-        <div className="w-full h-screen">
+        <div className="w-full">
             {/* 배너 */}
             <div className="w-full h-15 flex items-center justify-center bg-[#4EABFF] text-xl font-semibold">
                 <p className="text-white">레퍼런스로 시작하는 스몰 브랜드 브랜딩 워크숍</p>
@@ -147,6 +147,26 @@ function App() {
                     <SkeletonImageCard />
                 </section>
             </main>
+            <div className="h-[114px] flex flex-col items-center gap-6 my-20">
+                {/* 회원가입 및 로그인 유도 문구 */}
+                <div className="flex items-center">
+                    <a href="" className="underline">
+                        회원가입
+                    </a>
+                    <p className="mx-1">또는</p>
+                    <a href="" className="underline">
+                        로그인
+                    </a>
+                    <p>을 통해 19만개 이상의 크리에이티브를 발견하고 수집해보세요.</p>
+                </div>
+                {/* 회원가입 또는 로그인 버튼 UI */}
+                <div className="flex items-center gap-4">
+                    <Button>회원가입</Button>
+                    <p className="text-sm">또는</p>
+                    <Button variant={"outline"}>로그인</Button>
+                </div>
+            </div>
+            <AppFooter />
         </div>
     );
 }

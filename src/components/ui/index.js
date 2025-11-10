@@ -6,3 +6,4 @@ export { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 export { Input } from "./input";
 export { Separator } from "./separator";
 export { Skeleton } from "./skeleton";
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "./tooltip";
