@@ -1,12 +1,16 @@
 import { AppFooter, AppHeader, AppStickyMenu } from "./components/common";
 import { SkeletonImageCard } from "./components/skeleton";
 import { Avatar, AvatarFallback, AvatarImage, Badge, Button, Card, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Separator, Skeleton } from "./components/ui";
-import { BadgeCheck, BriefcaseBusiness, Crosshair, WandSparkles } from "lucide-react";
+import { BadgeCheck, BriefcaseBusiness, Crosshair, Heart, WandSparkles } from "lucide-react";
 
 // CONSTANTS TEST DATA
 import { MENTORS, RECRUITMENTS } from "./constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
+
+function addCommas(amount) {
+    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 function App() {
     const gallery = ["", "", "", "", "", "", ""];
@@ -19,7 +23,7 @@ function App() {
         const API_KEY = "WiGPtaTl7v_Z_CMmuqp6qaLhBFOqfg8SIX_6DpWmi8k";
         const API_URL = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}`;
 
-        const res = await axios.get(`${API_URL}&page=1&query=office`);
+        const res = await axios.get(`${API_URL}&page=1&query=korea`);
         console.log("res: ", res);
 
         // const 실제로필요한데이터전체 = res.data;
@@ -64,7 +68,22 @@ function App() {
                         return (
                             <Dialog>
                                 <DialogTrigger>
-                                    <SkeletonImageCard />
+                                    <div className="w-full flex flex-col gap-2">
+                                        <img src={image.urls.regular} alt="@THUMBNAIL" className="w-full aspect-square rounded-sm object-cover" />
+                                        <div className="w-full flex items-center justify-between">
+                                            <div className="flex items-center gap-2">
+                                                <img src={image.user.profile_image.large} alt="@PROFILE_IMAGE" className="w-7 h-7 rounded-full" />
+                                                <p className="text-sm">{image.user.username}</p>
+                                            </div>
+                                            <div className="flex items-center gap-3">
+                                                {/* 좋아요 */}
+                                                <div className="flex items-center gap-1">
+                                                    <Heart size={16} className="text-red-400" fill="#f87171" />
+                                                    <p className="text-sm">{addCommas(image.likes)}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
