@@ -63,7 +63,6 @@ function App() {
                     {images.map((image, index) => (
                         <AppImageDialog props={image} />
                     ))}
-                    {/* <SkeletonImageCard /> */}
                 </section>
                 {/* 포트폴리오 피드백부터 커리어 상담까지! */}
                 <section className="w-full flex flex-col gap-6 py-12 px-6 lg:px-20 mt-12 bg-black">
