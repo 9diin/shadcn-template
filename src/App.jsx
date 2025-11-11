@@ -1,4 +1,4 @@
-import { AppFooter, AppHeader, AppStickyMenu } from "./components/common";
+import { AppFooter, AppHeader, AppImageCard, AppImageDialog, AppStickyMenu } from "./components/common";
 import { SkeletonImageCard } from "./components/skeleton";
 import { Avatar, AvatarFallback, AvatarImage, Badge, Button, Card, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Separator, Skeleton } from "./components/ui";
 import { BadgeCheck, BriefcaseBusiness, Crosshair, Heart, WandSparkles } from "lucide-react";
@@ -7,10 +7,6 @@ import { BadgeCheck, BriefcaseBusiness, Crosshair, Heart, WandSparkles } from "l
 import { MENTORS, RECRUITMENTS } from "./constants";
 import axios from "axios";
 import { useEffect, useState } from "react";
-
-function addCommas(amount) {
-    return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
 function App() {
     const gallery = ["", "", "", "", "", "", ""];
@@ -64,36 +60,9 @@ function App() {
                 <AppStickyMenu />
                 {/* IMAGE LIST */}
                 <section className="w-full grid grid-cols-6 gap-6 mt-4 px-20">
-                    {images.map((image, index) => {
-                        return (
-                            <Dialog>
-                                <DialogTrigger>
-                                    <div className="w-full flex flex-col gap-2">
-                                        <img src={image.urls.regular} alt="@THUMBNAIL" className="w-full aspect-square rounded-sm object-cover" />
-                                        <div className="w-full flex items-center justify-between">
-                                            <div className="flex items-center gap-2">
-                                                <img src={image.user.profile_image.large} alt="@PROFILE_IMAGE" className="w-7 h-7 rounded-full" />
-                                                <p className="text-sm">{image.user.username}</p>
-                                            </div>
-                                            <div className="flex items-center gap-3">
-                                                {/* 좋아요 */}
-                                                <div className="flex items-center gap-1">
-                                                    <Heart size={16} className="text-red-400" fill="#f87171" />
-                                                    <p className="text-sm">{addCommas(image.likes)}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </DialogTrigger>
-                                <DialogContent>
-                                    <DialogHeader>
-                                        <DialogTitle>Are you absolutely sure?</DialogTitle>
-                                        <DialogDescription>This action cannot be undone. This will permanently delete your account and remove your data from our servers.</DialogDescription>
-                                    </DialogHeader>
-                                </DialogContent>
-                            </Dialog>
-                        );
-                    })}
+                    {images.map((image, index) => (
+                        <AppImageDialog props={image} />
+                    ))}
 
                     {/* <SkeletonImageCard />
                     <SkeletonImageCard />
@@ -185,12 +154,6 @@ function App() {
                 </section>
                 {/* IMAGE LIST */}
                 <section className="w-full grid grid-cols-6 gap-6 mt-6 px-20">
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
                     <SkeletonImageCard />
                     <SkeletonImageCard />
                     <SkeletonImageCard />
