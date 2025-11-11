@@ -1,12 +1,12 @@
-import { AppFooter, AppHeader, AppImageCard, AppImageDialog, AppStickyMenu } from "./components/common";
+import { useEffect, useState } from "react";
+import axios from "axios";
+// UI
+import { AppFooter, AppHeader, AppImageDialog, AppStickyMenu } from "./components/common";
 import { SkeletonImageCard } from "./components/skeleton";
-import { Avatar, AvatarFallback, AvatarImage, Badge, Button, Card, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Separator, Skeleton } from "./components/ui";
-import { BadgeCheck, BriefcaseBusiness, Crosshair, Heart, WandSparkles } from "lucide-react";
-
+import { Avatar, AvatarFallback, AvatarImage, Badge, Button, Card, Separator, Skeleton } from "./components/ui";
+import { BadgeCheck, BriefcaseBusiness, Crosshair, WandSparkles } from "lucide-react";
 // CONSTANTS TEST DATA
 import { MENTORS, RECRUITMENTS } from "./constants";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 function App() {
     const gallery = ["", "", "", "", "", "", ""];
@@ -63,24 +63,7 @@ function App() {
                     {images.map((image, index) => (
                         <AppImageDialog props={image} />
                     ))}
-
-                    {/* <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard />
-                    <SkeletonImageCard /> */}
+                    {/* <SkeletonImageCard /> */}
                 </section>
                 {/* 포트폴리오 피드백부터 커리어 상담까지! */}
                 <section className="w-full flex flex-col gap-6 py-12 px-6 lg:px-20 mt-12 bg-black">
