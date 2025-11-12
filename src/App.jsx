@@ -40,7 +40,7 @@ function App() {
                 <p className="text-white">레퍼런스로 시작하는 스몰 브랜드 브랜딩 워크숍</p>
             </div>
             {/* 자회사 링크 */}
-            <div className="w-full h-[34px] flex items-center gap-3 px-8">
+            <div className="hidden w-full h-[34px] xl:flex items-center gap-3 px-8">
                 <Skeleton className="w-[18px] h-[18px] rounded-full" />
                 <Separator orientation="vertical" className="h-3!" />
                 <p className="text-sm font-medium">notefolio</p>
