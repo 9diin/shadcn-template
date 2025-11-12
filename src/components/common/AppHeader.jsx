@@ -1,5 +1,7 @@
 import { ChevronDown, Menu, Search } from "lucide-react";
-import { Button, Input, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "../ui";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Button, Input, Separator, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Tooltip, TooltipContent, TooltipTrigger } from "../ui";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FOOTER_CONTETNS } from "../../constants";
 
 const menu = [
     {
@@ -45,11 +47,108 @@ function AppHeader() {
                             <SheetTrigger>
                                 <Menu />
                             </SheetTrigger>
-                            <SheetContent side="left">
-                                <SheetHeader>
-                                    <SheetTitle>Are you absolutely sure?</SheetTitle>
-                                    <SheetDescription>This action cannot be undone. This will permanently delete your account and remove your data from our servers.</SheetDescription>
-                                </SheetHeader>
+                            <SheetContent side="left" className="flex flex-col px-8 pb-8 gap-8 overflow-y-scroll">
+                                <div className="flex flex-col gap-6 mt-16">
+                                    <img src="src/assets/logo.svg" alt="" className="w-24" />
+                                    <div className="flex flex-col">
+                                        <p className="text-sm">회원가입 또는 로그인을 통해 13만개</p>
+                                        <p className="text-sm">이상의 크리에이티브를 발견하고 수집해보세요.</p>
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                        <Button className="bg-[#4ACAD4] hover:bg-[#41a3aa]">회원가입</Button>
+                                        <Button variant={"outline"}>로그인</Button>
+                                    </div>
+                                </div>
+                                <Separator />
+                                <div className="flex flex-col gap-6">
+                                    {menu.map((item, index) => {
+                                        return (
+                                            <div key={index} className={`h-full flex items-center gap-1 font-medium`}>
+                                                <p className={`text-[15px] ${item.underline && "mt-0.5"}`}>{item.label}</p>
+                                                {item.dropdown && <ChevronDown size={16} />}
+                                                {item.newest && <p className="text-xs text-[#05BCC6] font-medium">NEW</p>}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                <Separator />
+                                <div className="flex flex-col gap-6">
+                                    <a href="" className="text-neutral-500 text-sm">
+                                        서비스 소개
+                                    </a>
+                                    <a href="" className="text-neutral-500 text-sm">
+                                        공지사항
+                                    </a>
+                                    <a href="" className="text-neutral-500 text-sm">
+                                        운영정책
+                                    </a>
+                                    <a href="" className="text-neutral-500 text-sm">
+                                        개인정보처리방침
+                                    </a>
+                                    <a href="" className="text-neutral-500 text-sm">
+                                        자주묻는 질문
+                                    </a>
+                                    <a href="" className="text-neutral-500 text-sm">
+                                        광고상품
+                                    </a>
+                                    <a href="" className="text-neutral-500 text-sm">
+                                        문의하기
+                                    </a>
+                                </div>
+                                <Separator />
+                                <Accordion type="single" collapsible>
+                                    <AccordionItem value="item-1">
+                                        <AccordionTrigger>
+                                            <p>패밀리 사이트</p>
+                                        </AccordionTrigger>
+                                        <AccordionContent className="flex flex-col gap-6">
+                                            <div className="flex items-center justify-between">
+                                                <img src="src/assets/logo.svg" alt="" className="w-22" />
+                                                <div className="flex flex-col gap-1">
+                                                    <p className="text-xs font-semibold">노트폴리오</p>
+                                                    <p className="text-xs">국내 최대 포트폴리오 플랫폼</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center justify-between">
+                                                <img src="src/assets/logo.svg" alt="" className="w-22" />
+                                                <div className="flex flex-col gap-1">
+                                                    <p className="text-xs font-semibold">노트폴리오</p>
+                                                    <p className="text-xs">국내 최대 포트폴리오 플랫폼</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center justify-between">
+                                                <img src="src/assets/logo.svg" alt="" className="w-22" />
+                                                <div className="flex flex-col gap-1">
+                                                    <p className="text-xs font-semibold">노트폴리오</p>
+                                                    <p className="text-xs">국내 최대 포트폴리오 플랫폼</p>
+                                                </div>
+                                            </div>
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                </Accordion>
+                                <Separator />
+                                <div className="flex flex-col gap-6">
+                                    <div className="flex flex-col gap-4">
+                                        {FOOTER_CONTETNS.map((item) => {
+                                            return (
+                                                <div className="flex items-center gap-4">
+                                                    <FontAwesomeIcon icon={item.icon} />
+                                                    <p className="text-sm">{item.label}</p>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                    <Separator />
+                                    <div className="flex flex-col gap-2">
+                                        <p className="text-xs font-semibold mb-3">(주)스터닝 사업자 정보</p>
+                                        <p className="text-xs text-neutral-500">사업자 등록번호 : 120-87-69298</p>
+                                        <p className="text-xs text-neutral-500">직업정보제공: J1200020190003</p>
+                                        <p className="text-xs text-neutral-500">대표자명 : 김승환</p>
+                                        <p className="text-xs text-neutral-500">전화번호:070-8733-5858</p>
+                                        <p className="text-xs text-neutral-500">주소 : 서울특별시 강남구 봉은사로112길 6 2F</p>
+                                        <p className="text-xs font-semibold mt-3">ⓒ 2020 STUNNING INC.</p>
+                                    </div>
+                                </div>
                             </SheetContent>
                         </Sheet>
                         {/* 로고 */}

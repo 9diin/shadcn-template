@@ -8,3 +8,4 @@ export { Separator } from "./separator";
 export { Skeleton } from "./skeleton";
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "./tooltip";
 export { Sheet, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription } from "./sheet";
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./accordion";

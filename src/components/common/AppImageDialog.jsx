@@ -1,72 +1,47 @@
 import { Calendar, Grid2X2X, Heart, TextInitial } from "lucide-react";
-import { AppImageCard } from ".";
+import { AppImageCard, AppTooltip } from ".";
 import { Button, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, Separator, Tooltip, TooltipContent, TooltipTrigger } from "../ui";
 import dayjs from "dayjs";
 import { addCommas } from "../../lib/format/comma";
 
 function AppImageDialog({ props }) {
-    console.log(props);
+    const buttons = [
+        {
+            label: "좋아요 01",
+            description: "description - 좋아요 01",
+        },
+        {
+            label: "좋아요 02",
+            description: "description - 좋아요 02",
+        },
+        {
+            label: "좋아요 03",
+            description: "description - 좋아요 03",
+        },
+        {
+            label: "좋아요 04",
+            description: "description - 좋아요 04",
+        },
+    ];
+
     return (
         <Dialog>
             <DialogTrigger>
                 <AppImageCard props={props} />
             </DialogTrigger>
             <DialogContent>
-                <div className="absolute top-0 -right-22 flex flex-col gap-6">
-                    <Tooltip>
-                        <TooltipTrigger asChild>
+                <div className="absolute top-0 -right-20 flex flex-col gap-6">
+                    {buttons.map((button) => (
+                        <AppTooltip description={button.description}>
                             <div className="flex flex-col items-center justify-center gap-1">
                                 <Button size={"icon"} className="rounded-full">
                                     <Heart />
                                 </Button>
-                                <p className="text-white">좋아요 01</p>
+                                <p className="text-sm text-white">{button.label}</p>
                             </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>좋아요 01</p>
-                        </TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <div className="flex flex-col items-center justify-center gap-1">
-                                <Button size={"icon"} className="rounded-full">
-                                    <Heart />
-                                </Button>
-                                <p className="text-white">좋아요 02</p>
-                            </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>좋아요 02</p>
-                        </TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <div className="flex flex-col items-center justify-center gap-1">
-                                <Button size={"icon"} className="rounded-full">
-                                    <Heart />
-                                </Button>
-                                <p className="text-white">좋아요 03</p>
-                            </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>좋아요 03</p>
-                        </TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <div className="flex flex-col items-center justify-center gap-1">
-                                <Button size={"icon"} className="rounded-full">
-                                    <Heart />
-                                </Button>
-                                <p className="text-white">좋아요 04</p>
-                            </div>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            <p>좋아요 04</p>
-                        </TooltipContent>
-                    </Tooltip>
+                        </AppTooltip>
+                    ))}
                 </div>
-
                 <DialogHeader>
                     <DialogTitle>Title</DialogTitle>
                     <DialogDescription>{props.description || "등록된 설명이 없습니다."}</DialogDescription>
