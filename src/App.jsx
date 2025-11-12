@@ -10,6 +10,8 @@ import { MENTORS, RECRUITMENTS } from "./constants";
 
 function App() {
     const gallery = ["", "", "", "", "", "", ""];
+    const [searchValue, setSearchValue] = useState("");
+    const [category, setCategory] = useState("korea");
 
     const [data, setData] = useState(null); // Unsplash API에서 받은 데이터 전부
     const [images, setImages] = useState([]); // Unsplash API에서 받은 데이터 전부 중 실제로 필요한 Image 데이터
@@ -19,8 +21,7 @@ function App() {
         const API_KEY = "WiGPtaTl7v_Z_CMmuqp6qaLhBFOqfg8SIX_6DpWmi8k";
         const API_URL = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}`;
 
-        const res = await axios.get(`${API_URL}&page=1&query=korea`);
-        console.log("res: ", res);
+        const res = await axios.get(`${API_URL}&page=1&query=${category}`);
 
         // const 실제로필요한데이터전체 = res.data;
         setData(res.data);
@@ -31,7 +32,7 @@ function App() {
     useEffect(() => {
         // 이미지 조회 함수 실행
         fetchApi();
-    }, []);
+    }, [category]);
 
     return (
         <div className="w-full">
@@ -48,7 +49,7 @@ function App() {
                 <p className="text-sm text-neutral-400 font-bold">LOUD</p>
             </div>
             {/* 헤더 */}
-            <AppHeader />
+            <AppHeader onSetSearchValue={setSearchValue} onFetchApi={fetchApi} />
             <main className="w-full flex flex-col items-center py-6">
                 {/* 메인 홍보 갤러리 */}
                 <section className="w-full flex items-center gap-6 overflow-x-scroll">
@@ -57,7 +58,7 @@ function App() {
                     ))}
                 </section>
                 {/* STIKCY MENU */}
-                <AppStickyMenu />
+                <AppStickyMenu onSetCategory={setCategory} />
                 {/* IMAGE LIST */}
                 <section className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 mt-6 px-6 xl:px-20">
                     {images.map((image, index) => (

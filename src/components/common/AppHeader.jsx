@@ -36,7 +36,11 @@ const menu = [
     },
 ];
 
-function AppHeader() {
+function AppHeader({ onSetSearchValue, onFetchApi }) {
+    const handleSearch = () => {
+        onFetchApi();
+    };
+
     return (
         <>
             {/* 모바일 헤더 */}
@@ -195,7 +199,7 @@ function AppHeader() {
                 <div className="flex items-center gap-2">
                     <div className="flex items-center border px-3 rounded-full bg-neutral-50">
                         <Search size={18} className="text-neutral-400" />
-                        <Input placeholder="230,000개 이상의 크리에이티브 검색" className="w-60 placeholder:text-neutral-400 outline-0 border-none focus-visible:ring-0" />
+                        <Input placeholder="230,000개 이상의 크리에이티브 검색" onChange={(event) => onSetSearchValue(event.target.value)} className="w-60 placeholder:text-neutral-400 outline-0 border-none focus-visible:ring-0" />
                     </div>
                     {/* 로그인 */}
                     <Button variant="link">로그인</Button>

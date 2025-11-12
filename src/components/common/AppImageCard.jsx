@@ -2,8 +2,6 @@ import { Heart } from "lucide-react";
 import { addCommas } from "../../lib/format/comma";
 
 function AppImageCard({ props }) {
-    console.log(props);
-
     if (!props) return null;
 
     return (
