@@ -1,30 +1,5 @@
 import { ChevronDown, Menu, Search } from "lucide-react";
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-    Button,
-    Drawer,
-    DrawerClose,
-    DrawerContent,
-    DrawerDescription,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
-    DrawerTrigger,
-    Input,
-    Separator,
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from "../ui";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Button, Drawer, DrawerContent, DrawerTrigger, Input, Separator, Sheet, SheetContent, SheetTrigger } from "../ui";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FOOTER_CONTETNS } from "../../constants";
 
@@ -179,13 +154,13 @@ function AppHeader({ onSetCategory }) {
                         {/* 로고 */}
                         <img src="src/assets/logo.svg" alt="@LOGO" className="w-30" />
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-4">
                         {/* 로그인 */}
                         <Button variant={"outline"}>로그인</Button>
                         {/* 검색 */}
                         <Drawer>
                             <DrawerTrigger>
-                                <Search />
+                                <Search size={20} />
                             </DrawerTrigger>
                             <DrawerContent className="h-full flex flex-col gap-6 px-6">
                                 <div className="flex items-center border px-3 rounded-full bg-neutral-50">

@@ -1,7 +1,7 @@
 import { Separator } from "../ui";
 import { ArrowUpDown, Brush, Camera, CirclePlay, Gem, IdCard, Layers, MousePointerClick, Package, Palette, Panda, PenTool, Sparkles, Type } from "lucide-react";
 
-function AppStickyMenu({ onSetCategory }) {
+function AppStickyMenu({ props, onSetCategory }) {
     const categories = [
         {
             icon: Layers,
@@ -89,10 +89,6 @@ function AppStickyMenu({ onSetCategory }) {
         },
     ];
 
-    const handleChangeCategory = () => {
-        onSetCategory();
-    };
-
     return (
         <section className="sticky top-14 z-10 w-full flex items-center justify-center py-2 px-6 lg:px-20 gap-10 mt-20 bg-white">
             <div className="hidden min-w-fit lg:flex flex-col gap-2">
@@ -108,8 +104,8 @@ function AppStickyMenu({ onSetCategory }) {
 
                     return (
                         <div key={index} className="min-w-fit flex flex-col items-center gap-2" onClick={() => onSetCategory(category.value)}>
-                            <IconComponent className="text-neutral-700" />
-                            <p className="text-sm">{category.label}</p>
+                            <IconComponent className={`${props === category.value ? "text-[#4ACAD4]" : "text-neutral-700"}`} />
+                            <p className={`${props === category.value && "text-[#4ACAD4]"} text-sm`}>{category.label}</p>
                         </div>
                     );
                 })}
