@@ -185,9 +185,7 @@ function AppHeader({ onSetCategory }) {
                         {/* 검색 */}
                         <Drawer>
                             <DrawerTrigger>
-                                <Button size={"icon"} variant={"ghost"}>
-                                    <Search />
-                                </Button>
+                                <Search />
                             </DrawerTrigger>
                             <DrawerContent className="h-full flex flex-col gap-6 px-6">
                                 <div className="flex items-center border px-3 rounded-full bg-neutral-50">

@@ -7,8 +7,18 @@ import { Avatar, AvatarFallback, AvatarImage, Badge, Button, Card, Separator, Sk
 import { BadgeCheck, BriefcaseBusiness, Crosshair, WandSparkles } from "lucide-react";
 // CONSTANTS TEST DATA
 import { MENTORS, RECRUITMENTS } from "./constants";
+import { useBear } from "./store";
 
 function App() {
+    const bears = useBear((state) => state.bears);
+    const increasePopulation = useBear((state) => state.increasePopulation);
+    const removeAllbears = useBear((state) => state.removeAllbears);
+    const updateBears = useBear((state) => state.updateBears);
+
+    const update = () => {
+        updateBears(1000);
+    };
+
     const gallery = ["", "", "", "", "", "", ""];
     const [category, setCategory] = useState("korea");
 
@@ -35,6 +45,10 @@ function App() {
 
     return (
         <div className="w-full">
+            <h1>{bears} bears around here...</h1>
+            {/* <button onClick={increasePopulation}>버튼</button>
+            <button onClick={update}>업데이트</button> */}
+            <button onClick={removeAllbears}>초기화</button>
             {/* 배너 */}
             <div className="w-full h-15 flex items-center justify-center bg-[#4EABFF] text-xl font-semibold">
                 <p className="text-white">레퍼런스로 시작하는 스몰 브랜드 브랜딩 워크숍</p>
