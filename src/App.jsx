@@ -14,23 +14,35 @@ function App() {
 
     const [data, setData] = useState(null); // Unsplash API에서 받은 데이터 전부
     const [images, setImages] = useState([]); // Unsplash API에서 받은 데이터 전부 중 실제로 필요한 Image 데이터
+    const [loading, setLoading] = useState(false); // 로딩 state
 
     // Unsplash API 이미지 조회 함수
     const fetchApi = async () => {
-        const API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
-        const API_URL = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}`;
+        try {
+            const API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
+            const API_URL = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}`;
 
-        const res = await axios.get(`${API_URL}&page=1&query=${category}`);
+            const res = await axios.get(`${API_URL}&page=1&query=${category}`);
 
-        // const 실제로필요한데이터전체 = res.data;
-        setData(res.data);
-        // const 스켈레톤이미지컴포넌트에서쓰일데이터 = res.data.results;
-        setImages(res.data.results);
+            // const 실제로필요한데이터전체 = res.data;
+            setData(res.data);
+            // const 스켈레톤이미지컴포넌트에서쓰일데이터 = res.data.results;
+            setImages(res.data.results);
+        } catch (error) {
+            console.log(error);
+            throw error;
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
-        // 이미지 조회 함수 실행
-        fetchApi();
+        // 렌더링 시, 스켈레톤 UI 테스트 코드
+        setLoading(true);
+        setTimeout(() => {
+            // 이미지 조회 함수 실행
+            fetchApi();
+        }, 2000);
     }, [category]);
 
     return (
@@ -60,9 +72,24 @@ function App() {
                 <AppStickyMenu props={category} onSetCategory={setCategory} />
                 {/* IMAGE LIST */}
                 <section className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-6 mt-6 px-6 xl:px-20">
-                    {images.map((image, index) => (
-                        <AppImageDialog props={image} />
-                    ))}
+                    {loading ? (
+                        <>
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                            <SkeletonImageCard />
+                        </>
+                    ) : (
+                        images.map((image, index) => <AppImageDialog props={image} />)
+                    )}
                 </section>
                 {/* 포트폴리오 피드백부터 커리어 상담까지! */}
                 <section className="w-full flex flex-col gap-6 py-12 px-6 lg:px-20 mt-12 bg-black">
