@@ -10,7 +10,6 @@ import { MENTORS, RECRUITMENTS } from "./constants";
 
 function App() {
     const gallery = ["", "", "", "", "", "", ""];
-    const [searchValue, setSearchValue] = useState("");
     const [category, setCategory] = useState("korea");
 
     const [data, setData] = useState(null); // Unsplash API에서 받은 데이터 전부
@@ -18,7 +17,7 @@ function App() {
 
     // Unsplash API 이미지 조회 함수
     const fetchApi = async () => {
-        const API_KEY = "WiGPtaTl7v_Z_CMmuqp6qaLhBFOqfg8SIX_6DpWmi8k";
+        const API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
         const API_URL = `https://api.unsplash.com/search/photos/?client_id=${API_KEY}`;
 
         const res = await axios.get(`${API_URL}&page=1&query=${category}`);
@@ -49,7 +48,7 @@ function App() {
                 <p className="text-sm text-neutral-400 font-bold">LOUD</p>
             </div>
             {/* 헤더 */}
-            <AppHeader onSetSearchValue={setSearchValue} onFetchApi={fetchApi} />
+            <AppHeader onSetCategory={setCategory} onFetchApi={fetchApi} />
             <main className="w-full flex flex-col items-center py-6">
                 {/* 메인 홍보 갤러리 */}
                 <section className="w-full flex items-center gap-6 overflow-x-scroll">

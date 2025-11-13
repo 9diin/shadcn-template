@@ -1,5 +1,30 @@
 import { ChevronDown, Menu, Search } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Button, Input, Separator, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Tooltip, TooltipContent, TooltipTrigger } from "../ui";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+    Button,
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+    Input,
+    Separator,
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+    Tooltip,
+    TooltipContent,
+    TooltipTrigger,
+} from "../ui";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FOOTER_CONTETNS } from "../../constants";
 
@@ -36,11 +61,7 @@ const menu = [
     },
 ];
 
-function AppHeader({ onSetSearchValue, onFetchApi }) {
-    const handleSearch = () => {
-        onFetchApi();
-    };
-
+function AppHeader({ onSetCategory }) {
     return (
         <>
             {/* 모바일 헤더 */}
@@ -162,9 +183,66 @@ function AppHeader({ onSetSearchValue, onFetchApi }) {
                         {/* 로그인 */}
                         <Button variant={"outline"}>로그인</Button>
                         {/* 검색 */}
-                        <Button size={"icon"} variant={"ghost"}>
-                            <Search />
-                        </Button>
+                        <Drawer>
+                            <DrawerTrigger>
+                                <Button size={"icon"} variant={"ghost"}>
+                                    <Search />
+                                </Button>
+                            </DrawerTrigger>
+                            <DrawerContent className="h-full flex flex-col gap-6 px-6">
+                                <div className="flex items-center border px-3 rounded-full bg-neutral-50">
+                                    <Search size={18} className="text-neutral-400" />
+                                    <Input placeholder="230,000개 이상의 크리에이티브 검색" onChange={(event) => onSetSearchValue(event.target.value)} className="w-full placeholder:text-neutral-400 outline-0 border-none focus-visible:ring-0" />
+                                </div>
+                                <Separator />
+                                <div className="flex flex-col gap-2">
+                                    <p className="text-xs text-neutral-500 font-semibold">노트폴리오 추천 검색어</p>
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <Button variant={"outline"} className="rounded-full">
+                                            포스터
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            로고
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            브랜딩
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            리플렛
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            포트폴리오
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            상세페이지
+                                        </Button>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                    <p className="text-xs text-neutral-500 font-semibold">노트폴리오 추천 콘텐츠</p>
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <Button variant={"outline"} className="rounded-full">
+                                            콘텐츠 01
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            콘텐츠 02
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            콘텐츠 03
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            콘텐츠 04
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            콘텐츠 05
+                                        </Button>
+                                        <Button variant={"outline"} className="rounded-full">
+                                            콘텐츠 06
+                                        </Button>
+                                    </div>
+                                </div>
+                            </DrawerContent>
+                        </Drawer>
                     </div>
                 </div>
                 <nav className="w-full h-14 flex items-center gap-4">
@@ -199,7 +277,15 @@ function AppHeader({ onSetSearchValue, onFetchApi }) {
                 <div className="flex items-center gap-2">
                     <div className="flex items-center border px-3 rounded-full bg-neutral-50">
                         <Search size={18} className="text-neutral-400" />
-                        <Input placeholder="230,000개 이상의 크리에이티브 검색" onChange={(event) => onSetSearchValue(event.target.value)} className="w-60 placeholder:text-neutral-400 outline-0 border-none focus-visible:ring-0" />
+                        <Input
+                            placeholder="230,000개 이상의 크리에이티브 검색"
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    onSetCategory(e.target.value.replace(/\s+/g, ""));
+                                }
+                            }}
+                            className="w-60 placeholder:text-neutral-400 outline-0 border-none focus-visible:ring-0"
+                        />
                     </div>
                     {/* 로그인 */}
                     <Button variant="link">로그인</Button>
