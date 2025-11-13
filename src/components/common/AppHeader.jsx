@@ -2,6 +2,7 @@ import { ChevronDown, Menu, Search } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Button, Drawer, DrawerContent, DrawerTrigger, Input, Separator, Sheet, SheetContent, SheetTrigger } from "../ui";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FOOTER_CONTETNS } from "../../constants";
+import { NavLink } from "react-router";
 
 const menu = [
     {
@@ -9,30 +10,35 @@ const menu = [
         newest: false,
         dropdown: false,
         underline: true,
+        path: "/",
     },
     {
         label: "채용",
         newest: true,
         dropdown: false,
         underline: false,
+        path: "/recruit",
     },
     {
         label: "워크숍/커뮤니티",
         newest: false,
         dropdown: true,
         underline: false,
+        path: "/",
     },
     {
         label: "포폴 피드백",
         newest: true,
         dropdown: false,
         underline: false,
+        path: "/",
     },
     {
         label: "에이전시",
         newest: false,
         dropdown: false,
         underline: false,
+        path: "/recruit",
     },
 ];
 
@@ -238,11 +244,11 @@ function AppHeader({ onSetCategory }) {
                     <nav className="h-full flex items-center gap-4">
                         {menu.map((item, index) => {
                             return (
-                                <div key={index} className={`h-full flex items-center gap-1 font-medium ${item.underline && "h-[calc(100%-2px)] border-b-2 border-black"}`}>
+                                <NavLink to={item.path} key={index} className={`h-full flex items-center gap-1 font-medium ${item.underline && "h-[calc(100%-2px)] border-b-2 border-black"}`}>
                                     <p className={`text-[15px] ${item.underline && "mt-0.5"}`}>{item.label}</p>
                                     {item.dropdown && <ChevronDown size={16} />}
                                     {item.newest && <p className="text-xs text-[#05BCC6] font-medium">NEW</p>}
-                                </div>
+                                </NavLink>
                             );
                         })}
                     </nav>

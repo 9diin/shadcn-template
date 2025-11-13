@@ -88,13 +88,13 @@ function App() {
                             <SkeletonImageCard />
                         </>
                     ) : (
-                        images.map((image, index) => <AppImageDialog props={image} />)
+                        images.map((image, index) => <AppImageDialog key={index} props={image} />)
                     )}
                 </section>
                 {/* 포트폴리오 피드백부터 커리어 상담까지! */}
                 <section className="w-full flex flex-col gap-6 py-12 px-6 lg:px-20 mt-12 bg-black">
                     <h3 className="scroll-m-20 text-2xl text-white font-semibold tracking-tight">포트폴리오 피드백부터 커리어 상담까지!</h3>
-                    <div className="flex 2xl:hidden items-center gap-6 overflow-x-scroll">
+                    <div className="flex 3xl:hidden items-center gap-6 overflow-x-scroll">
                         {/* 멘토 카드 */}
                         {MENTORS.map((mentor) => {
                             return (
@@ -134,7 +134,7 @@ function App() {
                             );
                         })}
                     </div>
-                    <div className="hidden 2xl:grid grid-cols-6 gap-6">
+                    <div className="hidden 3xl:grid grid-cols-6 gap-6">
                         {/* 멘토 카드 */}
                         {MENTORS.map((mentor) => {
                             return (
@@ -176,12 +176,34 @@ function App() {
                     </div>
                 </section>
                 {/* 디자이너 채용 정보는 노트폴리오에서! */}
-                <section className="w-full flex flex-col gap-6 py-12 px-20 bg-neutral-100">
+                <section className="w-full flex flex-col gap-6 py-12 px-6 lg:px-20 bg-neutral-100">
                     <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">디자이너 채용 정보는 노트폴리오에서!</h3>
-                    <div className="grid grid-cols-6 gap-6">
+                    <div className="flex 3xl:hidden items-center gap-6 overflow-x-scroll">
                         {RECRUITMENTS.map((recruitment) => {
                             return (
-                                <Card className="w-full h-fit p-0 gap-3 border-none shadow-none bg-transparent">
+                                <Card className="min-w-[271px] w-full h-fit p-0 gap-3 border-none shadow-none bg-transparent">
+                                    <Skeleton className="w-full h-52 rounded-lg bg-neutral-200" />
+                                    <div className="flex gap-2">
+                                        {/* 로고 */}
+                                        <Avatar className="w-10 h-10">
+                                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                                            <AvatarFallback>CN</AvatarFallback>
+                                        </Avatar>
+                                        <div className="flex flex-col">
+                                            {/* 타이틀 */}
+                                            <p className="text-[15px] font-semibold line-clamp-1">{recruitment.title}</p>
+                                            {/* 회사명 */}
+                                            <p className="text-sm text-neutral-700">{recruitment.company}</p>
+                                        </div>
+                                    </div>
+                                </Card>
+                            );
+                        })}
+                    </div>
+                    <div className="hidden 3xl:grid grid-cols-6 gap-6">
+                        {RECRUITMENTS.map((recruitment) => {
+                            return (
+                                <Card className="w-full min-w-[271px] h-fit p-0 gap-3 border-none shadow-none bg-transparent">
                                     <Skeleton className="w-full h-52 rounded-lg bg-neutral-200" />
                                     <div className="flex gap-2">
                                         {/* 로고 */}
